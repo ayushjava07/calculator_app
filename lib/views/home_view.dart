@@ -1,3 +1,4 @@
+import 'package:currency_calc/views/calculator_view.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatelessWidget {
@@ -5,19 +6,12 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Material(
-        child: Container(
-        color: Colors.purple[300],
-        child: const Center(
-          child: Text(
-            "hello world",
-            style: TextStyle(
-              fontSize: 24,
-              color: Colors.white,
-            ),
-          ),
-        ),
-        ),
-      );
+    return Scaffold(
+      backgroundColor: Colors.brown[500],
+      body: const SafeArea(
+        bottom: false,
+        child: CalculatorView(),
+      ),
+    );
   }
 }
