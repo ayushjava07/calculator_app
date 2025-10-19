@@ -67,6 +67,7 @@ class _CalculatorViewState extends State<CalculatorView> {
             DisplayOne(hint:"Enter Second Number",controller: displayTwoController,),
             SizedBox(height: 40),
               Text(
+                 key:Key("result"),
               z.toString(),
               style: TextStyle(
                 fontSize:60,
