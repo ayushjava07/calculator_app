@@ -16,12 +16,38 @@ class _CalculatorViewState extends State<CalculatorView> {
   num z=0;
   final displayOneController=TextEditingController();
   final displayTwoController=TextEditingController();
+  late final AppLifecycleListener _listener;
  @override
  void initState(){
   super.initState();
   displayOneController.text=x.toString();
   displayTwoController.text=y.toString();
+  _listener=AppLifecycleListener(
+    onShow: _onShow,
+    onHide: _onHide,
+    onResume: _onResume,
+    onDetach: _onDetach,
+    onInactive: _onInactive,
+    onPause: _onPause,
+    onStateChange:_onStateChange,
+    onRestart: _onRestart,
+  );
  }
+ void _onShow()=>print("onshow called");
+ void _onHide()=>print("onhide called");
+ void _onResume()=> print("on resume called");
+ void _onDetach()=> print("on detach called");
+ void _onInactive()=> print("on inactive called");
+ void _onPause()=> print("on onpause called");
+ void _onStateChange(AppLifecycleState state)=> print("on state change called");
+ void _onRestart()=> print("on restart called");
+  @override void dispose() {
+    // TODO: implement dispose
+    displayOneController.dispose();
+    displayTwoController.dispose();
+    _listener.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -47,7 +73,7 @@ class _CalculatorViewState extends State<CalculatorView> {
                 fontWeight: FontWeight.bold
               ),
             ),
-            Spacer(),
+            SizedBox(height: 40,),
             Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
